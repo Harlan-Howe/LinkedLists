@@ -1,6 +1,13 @@
-import sys
+import logging, datetime
 from typing import Generic, TypeVar, List
+from KinkaidDecorators import log_start_stop_method
 T = TypeVar("T")
+
+
+# logging.basicConfig(level=logging.INFO) # simple version to the output console
+logging.basicConfig(level=logging.DEBUG, filename=f"log {datetime.datetime.now():%m-%d@%H:%M:%S}.txt",
+                    format="%(asctime)s %(levelname)s %(message)s",
+                    datefmt="%H:%M:%S %p --- ") # more robust, sent to a file called log.txt in your project
 
 class LL_Node(Generic[T]):
     def __init__(self, value:T = None, next: "LL_Node[T]" = None):
@@ -29,6 +36,7 @@ class LinkedList(Generic[T]):
     def is_empty(self):
         return self.start is None
 
+    @log_start_stop_method
     def add_to_end(self, item:T):
         """
         appends a node with the given value at the end of this list.
