@@ -3,8 +3,7 @@ from LinkedListFile import *
 from InventoryItemFile import *
 
 class MyTestCase(unittest.TestCase):
-#     def test_something(self):
-#         self.assertual(True, False)
+
     def setUp(self):
         self.genericItem:InventoryItem  = InventoryItem()
         self.swordItem:InventoryItem    = InventoryItem(item_name="sword", item_type=InventoryType.MEELEE, item_power=5)
@@ -31,11 +30,11 @@ class MyTestCase(unittest.TestCase):
 
         l_list:LinkedList[InventoryItem] = LinkedList[InventoryItem]()
 
-        self.assertEqual([],l_list.toList())
+        self.assertEqual([], l_list.to_list())
         l_list.add_to_end(self.genericItem)
         l_list.add_to_end(self.swordItem)
         print(f"\t{l_list}")
-        self.assertEqual([self.genericItem, self.swordItem], l_list.toList())
+        self.assertEqual([self.genericItem, self.swordItem], l_list.to_list())
         print("End TEST B   -----------------------------------------------------------")
 
     #@unittest.skip("Skipping test c. Get test b working first.")
@@ -47,7 +46,7 @@ class MyTestCase(unittest.TestCase):
         l_list.add_to_end(InventoryItem(item_name="sword", item_type=InventoryType.MEELEE, item_power=5))
         l_list.add_to_start(InventoryItem(item_name="wand", item_type=InventoryType.MAGIC, item_power=3))
         print(f"\t{l_list}")
-        self.assertEqual([self.wandItem, self.genericItem, self.swordItem],l_list.toList())
+        self.assertEqual([self.wandItem, self.genericItem, self.swordItem], l_list.to_list())
         print("End TEST C   -----------------------------------------------------------")
 
     #@unittest.skip("Skipping test d. Get test c working first.")
@@ -58,7 +57,7 @@ class MyTestCase(unittest.TestCase):
         l_list.add_to_start(self.wandItem)
         l_list.add_all_to_end([self.clubItem, self.potionItem, self.swordItem])
         print(f"\t{l_list}")
-        self.assertEqual([self.wandItem, self.clubItem, self.potionItem, self.swordItem], l_list.toList())
+        self.assertEqual([self.wandItem, self.clubItem, self.potionItem, self.swordItem], l_list.to_list())
         print("End TEST D   -----------------------------------------------------------")
 
     #@unittest.skip("Skipping test e. Get test d working first.")
@@ -173,16 +172,16 @@ class MyTestCase(unittest.TestCase):
         l_list.insert_all_at_index([self.swordItem, self.poulticeItem, self.genericItem], 1)
         print(f"\t{l_list}")
         self.assertEqual([self.wandItem, self.swordItem, self.poulticeItem, self.genericItem, \
-                                         self.clubItem, self.potionItem], l_list.toList())
+                                         self.clubItem, self.potionItem], l_list.to_list())
 
         l_list.insert_all_at_index([self.wandItem, self.potionItem], 0)
         self.assertEqual([self.wandItem, self.potionItem, self.wandItem, self.swordItem, \
-                                         self.poulticeItem, self.genericItem, self.clubItem, self.potionItem], l_list.toList() )
+                                         self.poulticeItem, self.genericItem, self.clubItem, self.potionItem], l_list.to_list())
 
         l_list.insert_all_at_index([self.wandItem], 8)
         self.assertEqual([self.wandItem, self.potionItem, self.wandItem, self.swordItem, \
                                          self.poulticeItem, self.genericItem, self.clubItem, self.potionItem, \
-                                         self.wandItem], l_list.toList())
+                                         self.wandItem], l_list.to_list())
 
         self.assertRaises(IndexError, l_list.insert_all_at_index, [self.genericItem, self.genericItem], 12)
         print("End TEST L   -----------------------------------------------------------")
@@ -197,11 +196,11 @@ class MyTestCase(unittest.TestCase):
         l_list.remove_first_item()
         print(f"\t{l_list}")
         self.assertEqual(3, len(l_list))
-        self.assertEqual([self.wandItem, self.potionItem, self.daggerItem], l_list.toList())
+        self.assertEqual([self.wandItem, self.potionItem, self.daggerItem], l_list.to_list())
         l_list.remove_last_item()
         print(f"\t{l_list}")
         self.assertEqual(2, len(l_list))
-        self.assertEqual([self.wandItem, self.potionItem], l_list.toList())
+        self.assertEqual([self.wandItem, self.potionItem], l_list.to_list())
         print("End TEST M   -----------------------------------------------------------")
 
 
@@ -215,17 +214,17 @@ class MyTestCase(unittest.TestCase):
         l_list.remove_item_at_index(2)
         print(f"\t{l_list}")
         self.assertEqual(4, len(l_list))
-        self.assertEqual([self.potionItem, self.swordItem, self.potionItem, self.poulticeItem], l_list.toList())
+        self.assertEqual([self.potionItem, self.swordItem, self.potionItem, self.poulticeItem], l_list.to_list())
 
         l_list.remove_item_at_index(0)
         print(f"\t{l_list}")
         self.assertEqual(3, len(l_list))
-        self.assertEqual([self.swordItem, self.potionItem, self.poulticeItem], l_list.toList())
+        self.assertEqual([self.swordItem, self.potionItem, self.poulticeItem], l_list.to_list())
 
         l_list.remove_item_at_index(2)
         print(f"\t{l_list}")
         self.assertEqual(2, len(l_list))
-        self.assertEqual([self.swordItem, self.potionItem], l_list.toList())
+        self.assertEqual([self.swordItem, self.potionItem], l_list.to_list())
         print("End TEST N   -----------------------------------------------------------")
 
 
@@ -256,19 +255,19 @@ class MyTestCase(unittest.TestCase):
         print(f"\t{l_list}")
         self.assertEqual(6, len(l_list))
         self.assertEqual([self.swordItem, self.wandItem, self.poulticeItem, self.swordItem, self.daggerItem,
-                          self.wandItem], l_list.toList())
+                          self.wandItem], l_list.to_list())
 
         l_list.remove(self.swordItem, first_only=True)
         print(f"\t{l_list}")
         self.assertEqual(5, len(l_list))
         self.assertEqual([self.wandItem, self.poulticeItem, self.swordItem, self.daggerItem, self.wandItem],
-                         l_list.toList())
+                         l_list.to_list())
 
         l_list.remove(self.genericItem)
         print(f"\t{l_list}")
         self.assertEqual(5, len(l_list))
         self.assertEqual([self.wandItem, self.poulticeItem, self.swordItem, self.daggerItem, self.wandItem],
-                         l_list.toList())
+                         l_list.to_list())
         print("End TEST P   -----------------------------------------------------------")
 
 
@@ -282,7 +281,7 @@ class MyTestCase(unittest.TestCase):
         l_list.add_to_end(18)
         l_list.add_to_start(6)
         print(f"\t{l_list}")
-        self.assertEqual([6, 12, 18],l_list.toList())
+        self.assertEqual([6, 12, 18], l_list.to_list())
 
         l_list2:LinkedList[str] = LinkedList[str]()
 
@@ -291,7 +290,7 @@ class MyTestCase(unittest.TestCase):
         l_list2.add_all_to_end(items)
         l_list2.add_to_end("fifth")
         print(l_list2)
-        self.assertEqual(["first", "second", "third", "fourth", "fifth"], l_list2.toList() )
+        self.assertEqual(["first", "second", "third", "fourth", "fifth"], l_list2.to_list())
         print("End TEST Q   -----------------------------------------------------------")
 
 if __name__ == '__main__':
