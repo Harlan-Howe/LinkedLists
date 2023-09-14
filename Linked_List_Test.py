@@ -52,12 +52,29 @@ class MyTestCase(unittest.TestCase):
     #@unittest.skip("Skipping test d. Get test c working first.")
     def test_d_add_items(self):
         print("\nStart TEST D -----------------------------------------------------------")
-        l_list:LinkedList[InventoryItem] = LinkedList[InventoryItem]()
+        l_list: LinkedList[InventoryItem] = LinkedList[InventoryItem]()
 
+        #check for a linked list that initially has one item.
         l_list.add_to_start(self.wandItem)
         l_list.add_all_to_end([self.clubItem, self.potionItem, self.swordItem])
         print(f"\t{l_list}")
         self.assertEqual([self.wandItem, self.clubItem, self.potionItem, self.swordItem], l_list.to_list())
+
+        # check for an initially empty linked list
+        l_list2: LinkedList[InventoryItem] = LinkedList[InventoryItem]()
+        l_list2.add_all_to_end([self.clubItem, self.potionItem, self.swordItem])
+        print(f"\t{l_list2}")
+        self.assertEqual([self.clubItem, self.potionItem, self.swordItem], l_list2.to_list())
+
+        # check for an initially empty linked list
+        l_list3: LinkedList[InventoryItem] = LinkedList[InventoryItem]()
+        l_list3.add_to_start(self.wandItem)
+        l_list3.add_to_start(self.potionItem)
+        l_list3.add_all_to_end([self.clubItem, self.potionItem, self.swordItem])
+        print(f"\t{l_list3}")
+        self.assertEqual([self.potionItem, self.wandItem, self.clubItem, self.potionItem, self.swordItem],
+                         l_list3.to_list())
+
         print("End TEST D   -----------------------------------------------------------")
 
     #@unittest.skip("Skipping test e. Get test d working first.")
