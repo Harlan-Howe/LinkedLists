@@ -208,7 +208,7 @@ class LinkedList(Generic[T]):
         if p == self.start:
             self.insert_value_at_start(value)
         else:
-            back.next = LL_Node[T](value=value, next_node=p)
+            back.next_node = LL_Node[T](value=value, next_node=p)
 
     def insert_all_at_index(self, in_list: List[T], index: int):
         """
