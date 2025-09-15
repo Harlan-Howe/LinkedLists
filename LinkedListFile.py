@@ -1,6 +1,6 @@
 import logging, datetime
 from typing import Generic, TypeVar, List
-from KinkaidDecorators import log_start_stop_method
+from KinkaidDecorators2 import log_start_stop_method
 T = TypeVar("T")
 
 
